@@ -7,23 +7,13 @@
 //
 
 #include <iostream>
-#include <iomanip>
-#include <fstream>
-#include <sstream>
-
 #include <vector>
 #include <map>
-#include <list>
-#include <string>
-#include <unistd.h>
-#include <ctime>
 #include <assert.h>
 
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
-#include <opencv2/video/tracking.hpp>
-#include <opencv2/objdetect/objdetect.hpp>
 
 #include <boost/program_options.hpp>
 
