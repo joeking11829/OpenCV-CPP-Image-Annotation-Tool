@@ -3,7 +3,7 @@
 //  PatchExtractionTool
 //
 //  Created by Tom Runia on 04/03/15.
-//  Copyright (c) 2015 TUDelft. All rights reserved.
+//  Copyright (c) 2015 TomTom. All rights reserved.
 //
 
 #include <iostream>
