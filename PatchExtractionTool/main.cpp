@@ -25,11 +25,15 @@
 #include <opencv2/video/tracking.hpp>
 #include <opencv2/objdetect/objdetect.hpp>
 
+#include <boost/program_options.hpp>
+
 #include "Utilities.h"
 
 using namespace std;
 using namespace utilities;
+namespace po = boost::program_options;
 
+bool parseCommandLineParams(int argc, const char * argv[]);
 void resetSelection();
 void selectionToRectangle(bool makeSquareSize = false);
 void writePatchAsImage();
@@ -50,22 +54,21 @@ cv::Rect roi;
 cv::Size targetSize;
 
 vector<string> imageFiles;
-string inputPath, outputPath;
+string inputPath, outputPath, dataFile;
 
 ofstream filestream;
 
 void keyPressHandler () {
-    //cout << key << endl;
-    
     switch(key) {
         case 32: // 'space' (save image)
-            writePatchAsImage();
-            writePatchToCascadeFile();
+            if (!outputPath.empty()) writePatchAsImage();
+            if (!dataFile.empty()) writePatchToCascadeFile();
             resetSelection();
             if (nextImageUponSave) imageIndex++;
             break;
-            
-        case 117: // 'u' (undo selection)
+        
+        case 27:  // 'esc' (undo selection)
+        case 117: // 'u'   (undo selection)
             resetSelection();
             break;
         
@@ -77,7 +80,6 @@ void keyPressHandler () {
             imageIndex++;
             break;
             
-        case 27:  // 'esc' (exit application)
         case 113: // 'q'   (exit application)
             if (filestream.is_open()) filestream.close();
             exit(EXIT_SUCCESS);
@@ -170,20 +172,22 @@ void writePatchAsImage () {
     if (!readyForExtraction) return;
     
     cv::Mat patch = image(roi);
-    cv::resize(patch, patch, targetSize);
+    
+    // Optionally resize images to specified size
+    if (targetSize.width != 0 && targetSize.height != 0)
+        cv::resize(patch, patch, targetSize);
     
     string filename = nextFilename(outputPath);
-    printf("Writing '%s' to disk...\n", filename.c_str());
+    printf("Saved image patch '%s'.\n", filename.c_str());
     cv::imwrite(outputPath + filename, patch);
 }
 
-// Write ROI to cascade file 'info.dat'
 void writePatchToCascadeFile ()
 {
     if (!readyForExtraction) return;
     
     if (!filestream.is_open()) {
-        cout << "Unable to write to output file." << endl;
+        cout << "Unable to write to dataFile " << dataFile << endl;
         return;
     }
 
@@ -194,14 +198,13 @@ void writePatchToCascadeFile ()
     filestream << (int)ceil(roi.width) << " ";
     filestream << (int)ceil(roi.height) << "\n";
     
-    cout << "Saved ROI to cascade file." << endl;
+    cout << "Saved ROI to data file." << endl;
 }
 
 int main(int argc, const char * argv[])
 {
-    
-    inputPath = "/Users/tomrunia/Development/TomTom/data/TrainingData/TrafficSigns/train/";
-    outputPath = "/Users/tomrunia/Development/TomTom/data/TrainingData/TrafficSigns/triangle-signs/";
+    bool status = parseCommandLineParams(argc, argv);
+    if (!status) return EXIT_FAILURE;
     
     // Retrieve image files from directory
     getFilesInDirectory(inputPath, imageFiles, vector<string>{"png", "jpg", "gif", "bmp"});
@@ -212,13 +215,11 @@ int main(int argc, const char * argv[])
     }
     
     // If not existing, create directory for saving images
-    createDirectory(outputPath);
+    if (!outputPath.empty())
+        createDirectory(outputPath);
     
-    string cascadeFile = "/Users/tomrunia/Development/TomTom/data/TrainingData/TrafficSigns/traffic-signs-triangle.dat";
-    filestream.open(cascadeFile, ios::out);
-    
-    targetSize.width = 100;
-    targetSize.height = 100;
+    if (!dataFile.empty())
+        filestream.open(dataFile, ios::out);
     
     // Create OpenCV window and attach mouse listener
     cv::namedWindow("Patch Extraction Tool", cv::WINDOW_AUTOSIZE);
@@ -237,4 +238,69 @@ int main(int argc, const char * argv[])
     
     cout << "No more images in directory...DONE" << endl;
     return EXIT_SUCCESS;
+}
+
+bool parseCommandLineParams (int argc, const char * argv[])
+{
+    try {
+        po::options_description description("Allowed options");
+        
+        description.add_options()
+            ("input,i", po::value<string>(), "Input directory containing images (png, jpg or bmp)")
+            ("patchDir,p", po::value<string>(), "Output directory for writing image patches as image.")
+            ("dataFile,d", po::value<string>(), "Output file for writing bounding boxes to text file. This can be used for generating a data file suitable for the opencv_createsamples file to generate vector file.")
+            ("width,w", po::value<int>(), "Width of output images (default = 100px)")
+            ("height,h", po::value<int>(), "Height of output images (default = 100px)")
+            ("skipSave,n", po::value<bool>(), "Directly jump to the next image when saving image patch.");
+        
+        po::variables_map vm;
+        po::store(po::command_line_parser(argc, argv).options(description).run(), vm);
+        po::notify(vm);
+        
+        if (!vm.count("input")) {
+            cout << "Application needs input option." << endl;
+            cout << "Please specify --input..." << endl;
+            return false;
+        } else {
+            inputPath = vm["input"].as<string>();
+        }
+        
+        if (!vm.count("patchDir") && !vm.count("dataFile")) {
+            cout << "Application needs output option." << endl;
+            cout << "Either specify --patchDir or --dataFile..." << endl;
+            return false;
+        }
+        
+        // Parse 'patchDir'
+        if (vm.count("patchDir")) {
+            outputPath = vm["patchDir"].as<string>();
+        }
+        
+        // Parse 'dataFile'
+        if (vm.count("dataFile")) {
+            dataFile = vm["dataFile"].as<string>();
+        }
+        
+        // Parse 'nextUponSave'
+        if (vm.count("nextUponSave")) {
+            nextImageUponSave = vm["nextUponSave"].as<bool>();
+        }
+        
+        // Parse 'width' and 'height' of output images
+        if (vm.count("width") && vm.count("height")) {
+            targetSize.width =  vm["width"].as<int>();
+            targetSize.height = vm["height"].as<int>();
+        }
+        
+    }
+    catch(exception& e) {
+        cerr << "error: " << e.what() << "\n";
+        return false;
+    }
+    catch(...) {
+        cerr << "Exception of unknown type!\n";
+        return false;
+    }
+    
+    return true;
 }
