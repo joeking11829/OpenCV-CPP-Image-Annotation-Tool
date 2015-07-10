@@ -109,7 +109,8 @@ void mouseCallBackHandler (int event, int x, int y, int flags, void* userdata)
     }
 }
 
-void resetSelection () {
+void resetSelection ()
+{
     // Reset status
     startSelection = false;
     readyForExtraction = false;
@@ -216,7 +217,8 @@ int main(int argc, const char * argv[])
     cv::setMouseCallback("Patch Extraction Tool", mouseCallBackHandler, NULL);
     
     // Iterate through all images in the directory
-    while (imageIndex <= imageFiles.size()) {
+    while (imageIndex <= imageFiles.size())
+    {
         image = cv::imread(imageFiles[imageIndex], cv::IMREAD_UNCHANGED);
         imageWithSelection = image.clone();
         
