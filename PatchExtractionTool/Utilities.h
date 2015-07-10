@@ -1,50 +1,36 @@
 //
 //  Utilities.h
-//  VisionProject
+//  MoMa-ExtractionTool
 //
-//  Created by Tom Runia on 07/02/15.
+//  Created by Tom Runia on 05/03/15.
+//  Copyright (c) 2015 TUDelft. All rights reserved.
 //
 
-#ifndef __PatchExtractionTool__Utilities__
-#define __PatchExtractionTool__Utilities__
+#pragma once
 
-#include <iostream>
-#include <iomanip>
-#include <fstream>
-#include <sstream>
-#include <dirent.h>
-#include <sys/stat.h>
-
-#include <vector>
-#include <map>
-#include <list>
 #include <string>
-#include <unistd.h>
-
-#include <opencv2/core/core.hpp>
-#include <opencv2/highgui/highgui.hpp>
-#include <opencv2/imgproc/imgproc.hpp>
-
-using namespace std;
+#include <vector>
 
 namespace utilities
 {
-    //*************************************************************//
-    //****************** GENERAL HELPER METHODS *******************//
-    //*************************************************************//
-    string toLowerCase(const string& inputString);
-    string getFilename (const string& fullPath);
-    string getFilenameWithoutExtension(const string& fullPath);
-    string nextFilename (const string& directory);
-    void createDirectory(const string& path);
-    void getFilesInDirectory(const string& directory, vector<string>& fileNames, const vector<string>& validExtensions);
-    void getFilesInDirectory(const string& directory, vector<string>& fileNames, const string& validExtension);
+    
+    std::string toLowerCase(const std::string& inputString);
+    std::string getFilename (const std::string& fullPath);
+    std::string getFilenameWithoutExtension(const std::string& fullPath);
+    std::string getExtensionFromFilename (const std::string& fullPath);
+    std::string nextFilename (const std::string& directory);
+    void createDirectory(const std::string& path);
+    
+    void getFilesInDirectory(const std::string& directory,
+                             std::vector<std::string>& fileNames,
+                             const std::vector<std::string>& validExtensions,
+                             const bool sortFilenames = false);
+    
+    void getFilesInDirectory(const std::string& directory,
+                             std::vector<std::string>& fileNames,
+                             const std::string& validExtension,
+                             const bool sortFilenames = true);
 
-    //*************************************************************//
-    //*************** OPENCV RELATED HELPER METHODS ***************//
-    //*************************************************************//
-    void resizeImageWithAspectRatio (const cv::Mat& input, cv::Mat& output, cv::Size target);
-   
+    
 }
 
-#endif /* defined(__PatchExtractionTool__Utilities__) */

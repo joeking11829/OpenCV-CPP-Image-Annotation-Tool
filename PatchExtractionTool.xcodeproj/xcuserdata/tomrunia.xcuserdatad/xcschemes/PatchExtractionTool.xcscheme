@@ -60,23 +60,15 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "--input /Users/tomrunia/Development/TomTom/data/cars/TomTom/airport-sequence-images/"
+            argument = "--inputdir /Users/tomrunia/Development/TomTom/data/cars/TomTom/airport-sequence-images/"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "--patchDir /Users/tomrunia/Development/TomTom/data/cars/TomTom/airport-sequence-images/patches/"
+            argument = "--outputdir /Users/tomrunia/Development/TomTom/data/cars/TomTom/airport-sequence-images/patches/"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "--dataFile /Users/tomrunia/Development/TomTom/data/cars/TomTom/airport-sequence-images/labels.dat"
-            isEnabled = "YES">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "--width 80"
-            isEnabled = "YES">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "--height 80"
+            argument = "--csvfile /Users/tomrunia/Development/TomTom/data/cars/TomTom/airport-sequence-images/labels.csv"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>

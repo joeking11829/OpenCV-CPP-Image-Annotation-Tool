@@ -19,6 +19,7 @@
 		33A99AF11AA6FAEB00254579 /* libopencv_objdetect.3.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 33A99AEA1AA6FAEB00254579 /* libopencv_objdetect.3.0.0.dylib */; };
 		33A99AF21AA6FAEB00254579 /* libopencv_videoio.3.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 33A99AEB1AA6FAEB00254579 /* libopencv_videoio.3.0.0.dylib */; };
 		33C08E3F1AA6FF590048A738 /* Utilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 33C08E3D1AA6FF590048A738 /* Utilities.cpp */; };
+		33E1046F1B501F4B001D22D9 /* ImageAnnotator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 33E1046D1B501F4B001D22D9 /* ImageAnnotator.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -48,6 +49,8 @@
 		33A99AEB1AA6FAEB00254579 /* libopencv_videoio.3.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_videoio.3.0.0.dylib; path = /usr/local/lib/libopencv_videoio.3.0.0.dylib; sourceTree = "<absolute>"; };
 		33C08E3D1AA6FF590048A738 /* Utilities.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Utilities.cpp; sourceTree = "<group>"; };
 		33C08E3E1AA6FF590048A738 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
+		33E1046D1B501F4B001D22D9 /* ImageAnnotator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ImageAnnotator.cpp; sourceTree = "<group>"; };
+		33E1046E1B501F4B001D22D9 /* ImageAnnotator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageAnnotator.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +107,8 @@
 			children = (
 				33C08E3D1AA6FF590048A738 /* Utilities.cpp */,
 				33C08E3E1AA6FF590048A738 /* Utilities.h */,
+				33E1046D1B501F4B001D22D9 /* ImageAnnotator.cpp */,
+				33E1046E1B501F4B001D22D9 /* ImageAnnotator.h */,
 				33A99ADA1AA6FA6000254579 /* main.cpp */,
 			);
 			path = PatchExtractionTool;
@@ -180,6 +185,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				33C08E3F1AA6FF590048A738 /* Utilities.cpp in Sources */,
+				33E1046F1B501F4B001D22D9 /* ImageAnnotator.cpp in Sources */,
 				33A99ADB1AA6FA6000254579 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
