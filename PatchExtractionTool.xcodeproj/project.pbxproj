@@ -8,7 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		332212001AA74CF800772E59 /* libboost_program_options.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 332211FF1AA74CF800772E59 /* libboost_program_options.dylib */; };
-		33A99ADB1AA6FA6000254579 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 33A99ADA1AA6FA6000254579 /* main.cpp */; };
+		33411F681B505994004910F1 /* ImageAnnotator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 33411F631B505994004910F1 /* ImageAnnotator.cpp */; };
+		33411F691B505994004910F1 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 33411F651B505994004910F1 /* main.cpp */; };
+		33411F6A1B505994004910F1 /* Utilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 33411F661B505994004910F1 /* Utilities.cpp */; };
 		33A99AE21AA6FA9800254579 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33A99AE11AA6FA9800254579 /* OpenGL.framework */; };
 		33A99AE41AA6FA9D00254579 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33A99AE31AA6FA9D00254579 /* GLUT.framework */; };
 		33A99AEC1AA6FAEB00254579 /* libopencv_core.3.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 33A99AE51AA6FAEB00254579 /* libopencv_core.3.0.0.dylib */; };
@@ -18,8 +20,6 @@
 		33A99AF01AA6FAEB00254579 /* libopencv_imgproc.3.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 33A99AE91AA6FAEB00254579 /* libopencv_imgproc.3.0.0.dylib */; };
 		33A99AF11AA6FAEB00254579 /* libopencv_objdetect.3.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 33A99AEA1AA6FAEB00254579 /* libopencv_objdetect.3.0.0.dylib */; };
 		33A99AF21AA6FAEB00254579 /* libopencv_videoio.3.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 33A99AEB1AA6FAEB00254579 /* libopencv_videoio.3.0.0.dylib */; };
-		33C08E3F1AA6FF590048A738 /* Utilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 33C08E3D1AA6FF590048A738 /* Utilities.cpp */; };
-		33E1046F1B501F4B001D22D9 /* ImageAnnotator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 33E1046D1B501F4B001D22D9 /* ImageAnnotator.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -36,8 +36,12 @@
 
 /* Begin PBXFileReference section */
 		332211FF1AA74CF800772E59 /* libboost_program_options.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_program_options.dylib; path = /usr/local/Cellar/boost/1.56.0/lib/libboost_program_options.dylib; sourceTree = "<absolute>"; };
+		33411F631B505994004910F1 /* ImageAnnotator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ImageAnnotator.cpp; path = ImageAnnotationTool/ImageAnnotator.cpp; sourceTree = SOURCE_ROOT; };
+		33411F641B505994004910F1 /* ImageAnnotator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageAnnotator.h; path = ImageAnnotationTool/ImageAnnotator.h; sourceTree = SOURCE_ROOT; };
+		33411F651B505994004910F1 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ImageAnnotationTool/main.cpp; sourceTree = SOURCE_ROOT; };
+		33411F661B505994004910F1 /* Utilities.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Utilities.cpp; path = ImageAnnotationTool/Utilities.cpp; sourceTree = SOURCE_ROOT; };
+		33411F671B505994004910F1 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Utilities.h; path = ImageAnnotationTool/Utilities.h; sourceTree = SOURCE_ROOT; };
 		33A99AD71AA6FA6000254579 /* PatchExtractionTool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = PatchExtractionTool; sourceTree = BUILT_PRODUCTS_DIR; };
-		33A99ADA1AA6FA6000254579 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		33A99AE11AA6FA9800254579 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		33A99AE31AA6FA9D00254579 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
 		33A99AE51AA6FAEB00254579 /* libopencv_core.3.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_core.3.0.0.dylib; path = /usr/local/lib/libopencv_core.3.0.0.dylib; sourceTree = "<absolute>"; };
@@ -47,10 +51,6 @@
 		33A99AE91AA6FAEB00254579 /* libopencv_imgproc.3.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_imgproc.3.0.0.dylib; path = /usr/local/lib/libopencv_imgproc.3.0.0.dylib; sourceTree = "<absolute>"; };
 		33A99AEA1AA6FAEB00254579 /* libopencv_objdetect.3.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_objdetect.3.0.0.dylib; path = /usr/local/lib/libopencv_objdetect.3.0.0.dylib; sourceTree = "<absolute>"; };
 		33A99AEB1AA6FAEB00254579 /* libopencv_videoio.3.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_videoio.3.0.0.dylib; path = /usr/local/lib/libopencv_videoio.3.0.0.dylib; sourceTree = "<absolute>"; };
-		33C08E3D1AA6FF590048A738 /* Utilities.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Utilities.cpp; sourceTree = "<group>"; };
-		33C08E3E1AA6FF590048A738 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
-		33E1046D1B501F4B001D22D9 /* ImageAnnotator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ImageAnnotator.cpp; sourceTree = "<group>"; };
-		33E1046E1B501F4B001D22D9 /* ImageAnnotator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageAnnotator.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,7 +89,7 @@
 				332212011AA74D0A00772E59 /* boost-1.56.0 */,
 				33A99AE31AA6FA9D00254579 /* GLUT.framework */,
 				33A99AE11AA6FA9800254579 /* OpenGL.framework */,
-				33A99AD91AA6FA6000254579 /* PatchExtractionTool */,
+				33A99AD91AA6FA6000254579 /* ImageAnnotationTool */,
 				33A99AD81AA6FA6000254579 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -102,15 +102,16 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		33A99AD91AA6FA6000254579 /* PatchExtractionTool */ = {
+		33A99AD91AA6FA6000254579 /* ImageAnnotationTool */ = {
 			isa = PBXGroup;
 			children = (
-				33C08E3D1AA6FF590048A738 /* Utilities.cpp */,
-				33C08E3E1AA6FF590048A738 /* Utilities.h */,
-				33E1046D1B501F4B001D22D9 /* ImageAnnotator.cpp */,
-				33E1046E1B501F4B001D22D9 /* ImageAnnotator.h */,
-				33A99ADA1AA6FA6000254579 /* main.cpp */,
+				33411F631B505994004910F1 /* ImageAnnotator.cpp */,
+				33411F641B505994004910F1 /* ImageAnnotator.h */,
+				33411F661B505994004910F1 /* Utilities.cpp */,
+				33411F671B505994004910F1 /* Utilities.h */,
+				33411F651B505994004910F1 /* main.cpp */,
 			);
+			name = ImageAnnotationTool;
 			path = PatchExtractionTool;
 			sourceTree = "<group>";
 		};
@@ -184,9 +185,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				33C08E3F1AA6FF590048A738 /* Utilities.cpp in Sources */,
-				33E1046F1B501F4B001D22D9 /* ImageAnnotator.cpp in Sources */,
-				33A99ADB1AA6FA6000254579 /* main.cpp in Sources */,
+				33411F691B505994004910F1 /* main.cpp in Sources */,
+				33411F681B505994004910F1 /* ImageAnnotator.cpp in Sources */,
+				33411F6A1B505994004910F1 /* Utilities.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
